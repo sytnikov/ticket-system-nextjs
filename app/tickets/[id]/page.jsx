@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 async function getTicket(id) {
   const res = await fetch(`http://localhost:4000/tickets/${id}`, {
     next: {
-      revalidate: 20,
+      revalidate: 60,
     },
   });
 
@@ -29,6 +29,7 @@ async function getTicket(id) {
 }
 
 export default async function TicketDetails({ params }) {
+  
   const ticket = await getTicket(params.id);
 
   return (
