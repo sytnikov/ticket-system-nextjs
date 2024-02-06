@@ -7,14 +7,15 @@ body {
   background: #ebf0fa;
   @apply text-gray-500 m-8;
 }
-h1, h2 {
+h1,
+h2 {
   @apply font-bold text-primary text-lg;
 }
 main {
   @apply max-w-5xl my-12 mx-auto px-8;
 }
 main > h2 {
-  @apply mb-4 pb-2 text-base ;
+  @apply mb-4 pb-2 text-base;
 }
 p > a {
   @apply text-primary underline;
@@ -22,14 +23,14 @@ p > a {
 
 /* nav styles */
 nav {
-  @apply
-    pb-4
+  @apply pb-4
     border-b-2 border-gray-200
     flex items-center gap-5 
     my-10 mx-auto 
     max-w-5xl;
 }
-nav a, nav span {
+nav a,
+nav span {
   @apply text-gray-500;
 }
 nav a:hover {
@@ -41,8 +42,7 @@ main nav {
 
 /* button styles */
 button {
-  @apply 
-    px-3 py-2 
+  @apply px-3 py-2 
     rounded-sm 
     flex justify-between items-center gap-2
     text-sm;
@@ -59,8 +59,7 @@ button:hover {
 
 /* form styles */
 form {
-  @apply 
-    py-4 px-7 
+  @apply py-4 px-7 
     bg-primary 
     bg-opacity-5 
     rounded-md 
@@ -74,8 +73,7 @@ form label {
 form input,
 form textarea,
 form select {
-  @apply 
-    block 
+  @apply block 
     mt-2 my-4 px-2 py-1 
     rounded-sm w-full;
 }
@@ -85,8 +83,7 @@ form button {
 
 /* feedback styles */
 .error {
-  @apply 
-    border-2 
+  @apply border-2 
     border-red-500 
     bg-red-300
     text-red-800 
@@ -99,8 +96,7 @@ form button {
 
 /* card styles */
 .card {
-  @apply 
-    bg-white 
+  @apply bg-white 
     shadow-sm 
     rounded-md 
     py-3 px-4 my-4 
@@ -108,8 +104,7 @@ form button {
     overflow-hidden;
 }
 .card h3 {
-  @apply 
-    font-bold text-gray-700 text-sm 
+  @apply font-bold text-gray-700 text-sm 
     mb-0;
 }
 .card p {
@@ -118,8 +113,7 @@ form button {
 
 /* pill styles */
 .pill {
-  @apply 
-    py-1 px-2 mt-3
+  @apply py-1 px-2 mt-3
     inline-block 
     text-xs font-semibold;
 }
@@ -133,7 +127,6 @@ form button {
   @apply bg-emerald-300 text-emerald-600;
 }
 .card .pill {
-  @apply 
-    absolute bottom-0 right-0 
+  @apply absolute bottom-0 right-0 
     rounded-tl-md;
 }
