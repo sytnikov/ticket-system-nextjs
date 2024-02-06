@@ -1,9 +1,30 @@
+import { notFound } from "next/navigation"
+
+// if the path not found in the static rendered pages, try to fetch the data one more time, if not a success -> throw notFound page
+export const dynamicParams = true
+
+// generate an array with ticket ids
+export async function generateStaticParams() {
+  const res = await fetch("http://localhost:4000/tickets/")
+
+  const tickets = await res.json()
+
+  return tickets.map((ticket) => ({
+    id: ticket.id
+  }))
+}
+
 async function getTicket(id) {
   const res = await fetch(`http://localhost:4000/tickets/${id}`, {
     next: {
       revalidate: 20,
     },
   });
+
+  if (!res.ok) {
+    notFound()
+  }
+
   return res.json()
 }
 
