@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import Logo from "./ticket-me.png"
+import Logo from "../components/ticket-me.png"
 
 export default function Navbar() {
   return (
