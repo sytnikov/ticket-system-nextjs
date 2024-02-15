@@ -2,8 +2,10 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { notFound } from "next/navigation"
 import { cookies } from "next/headers";
 
+import DeleteButton from "./DeleteButton";
+
 // if the path not found in the static rendered pages, try to fetch the data one more time, if not a success -> throw notFound page
-export const dynamicParams = true
+// export const dynamicParams = true
 
 export async function generateMetadata({ params }) {
   const supabase = createServerComponentClient({ cookies })
@@ -34,13 +36,20 @@ async function getTicket(id) {
 }
 
 export default async function TicketDetails({ params }) {
-  
   const ticket = await getTicket(params.id);
+
+  const supabase = createServerComponentClient({ cookies })
+  const { data: { session } } = await supabase.auth.getSession()
 
   return (
     <main>
       <nav>
         <h2>Ticket Details</h2>
+        <div className="ml-auto">
+          {session.user.email === ticket.user_email && (
+            <DeleteButton id={ticket.id} />
+          )}
+        </div>
       </nav>
       <div className="card">
         <h3>{ticket.title}</h3>

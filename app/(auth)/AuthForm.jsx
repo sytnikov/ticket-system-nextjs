@@ -7,7 +7,7 @@ export default function AuthForm({ handleSubmit }) {
   const [password, setPassword] = useState("")
   
   return (
-    <form onSubmit={(e) => handleSubmit(e, email, password)}>
+    <form onSubmit={(e) => handleSubmit(e, email, password)} className="w-1/2">
       <label>
         <span>Email:</span>
         <input 

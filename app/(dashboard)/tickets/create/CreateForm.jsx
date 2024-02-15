@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 export default function CreateForm() {
   const router = useRouter()
   
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, setTitle] = useState("test");
+  const [body, setBody] = useState("test");
   const [priority, setPriority] = useState("low");
   const [isLoading, setIsLoading] = useState(false);
 
