@@ -1,29 +1,21 @@
+import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs"
 import { NextResponse } from "next/server"
-
-export const dynamic = "force-dynamic"
-
-export async function GET() {
-  const res = await fetch("http://localhost:4000/tickets")
-
-  const tickets = await res.json()
-
-  return NextResponse.json(tickets, {
-    status: 200
-  })
-}
+import { cookies } from "next/headers"
 
 export async function POST(req) {
   const ticket = await req.json()
 
-  const res = await fetch("http://localhost:4000/tickets", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify(ticket)
-  })
+  const supabase = createRouteHandlerClient({ cookies })
 
-  const newTicket = await res.json()
+  const { data: { session } } = await supabase.auth.getSession()
 
-  return NextResponse.json(newTicket, {
-    status: 201
+  const { data, error } = await supabase.from("tickets")
+  .insert({
+    ...ticket,
+    user_email: session.user.email,
   })
+  .select()
+  .single()
+  
+  return NextResponse.json({ data, error })
 }

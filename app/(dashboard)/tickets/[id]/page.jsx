@@ -1,42 +1,36 @@
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { notFound } from "next/navigation"
+import { cookies } from "next/headers";
 
 // if the path not found in the static rendered pages, try to fetch the data one more time, if not a success -> throw notFound page
 export const dynamicParams = true
 
-// generate an array with ticket ids
-export async function generateStaticParams() {
-  const res = await fetch("http://localhost:4000/tickets/")
-
-  const tickets = await res.json()
-
-  return tickets.map((ticket) => ({
-    id: ticket.id
-  }))
-}
-
 export async function generateMetadata({ params }) {
-  const id = params.id
+  const supabase = createServerComponentClient({ cookies })
 
-  const res = await fetch(`http://localhost:4000/tickets/${id}`)
-  const ticket = await res.json()
+  const { data: ticket } = await supabase.from("tickets")
+    .select()
+    .eq("id", params.id)
+    .single()
 
   return {
-    title: `TICKET.ME | ${ticket.title}`
+    title: `TICKET.ME | ${ticket?.title || "Ticket Not Found"}`
   }
 }
 
 async function getTicket(id) {
-  const res = await fetch(`http://localhost:4000/tickets/${id}`, {
-    next: {
-      revalidate: 60,
-    },
-  });
+  const supabase = createServerComponentClient({ cookies })
 
-  if (!res.ok) {
+  const { data } = await supabase.from("tickets")
+    .select()
+    .eq("id", id)
+    .single()
+
+  if (!data) {
     notFound()
   }
 
-  return res.json()
+  return data
 }
 
 export default async function TicketDetails({ params }) {

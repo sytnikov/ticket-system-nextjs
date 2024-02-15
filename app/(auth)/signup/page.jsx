@@ -13,6 +13,7 @@ export default function Signup() {
 
   const handleSubmit = async (e, email, password) => {
     e.preventDefault()
+    setFormError("")
 
     const supabase = createClientComponentClient()
     const { error } = await supabase.auth.signUp({

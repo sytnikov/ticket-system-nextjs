@@ -16,17 +16,23 @@ export default function CreateForm() {
     setIsLoading(true)
 
     const ticket = {
-      title, body, priority, user_email: "user@sytnikov.bio"
+      title, body, priority
     }
 
-    const res = await fetch("http://localhost:4000/tickets", {
+    const res = await fetch("http://localhost:3000/api/tickets", {
       method: "POST",
       headers: {"Content-Type": "application/json"},
       body: JSON.stringify(ticket)
     })
+    
+    const json = await res.json()
 
-    if (res.status === 201) {
-      router.refresh() // refetch the data before showing the ticket list
+    if (json.error) {
+      console.log('👀 error', json.error.message)
+    }
+
+    if (json.data) {
+      router.refresh()
       router.push("/tickets")
     }
   }
