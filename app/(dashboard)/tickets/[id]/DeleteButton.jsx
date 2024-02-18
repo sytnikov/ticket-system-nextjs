@@ -18,7 +18,7 @@ export default function DeleteButton({ id }) {
     const json = await res.json()
 
     if (json.error) {
-      console.log('👀 Error details', error.message)
+      console.log('👀 Error details', json.error.message)
       setIsLoading(false)
     }
 
