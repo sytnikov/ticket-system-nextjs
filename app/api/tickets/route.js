@@ -10,3 +10,22 @@ export async function GET(_) {
 
   return NextResponse.json({ data, error })
 }
+
+// without this function the page is generated as a static one...
+export async function POST(req) {
+  const ticket = await req.json()
+
+  const supabase = createRouteHandlerClient({ cookies })
+
+  const { data: { session } } = await supabase.auth.getSession()
+
+  const { data, error } = await supabase.from("tickets")
+  .insert({
+    ...ticket,
+    user_email: session.user.email,
+  })
+  .select()
+  .single()
+  
+  return NextResponse.json({ data, error })
+}
