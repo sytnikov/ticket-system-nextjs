@@ -2,6 +2,7 @@ import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs"
 import { NextResponse } from "next/server"
 import { cookies } from "next/headers"
 
+// these functions are not necessary as the request is handled from server components
 export async function GET(_) {
   const supabase = createRouteHandlerClient({ cookies })
 
@@ -11,7 +12,6 @@ export async function GET(_) {
   return NextResponse.json({ data, error })
 }
 
-// without this function the page is generated as a static one...
 export async function POST(req) {
   const ticket = await req.json()
 
