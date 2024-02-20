@@ -29,9 +29,13 @@ nav {
     my-10 mx-auto 
     max-w-5xl;
 }
+
 nav a,
 nav span {
-  @apply text-gray-500;
+  @apply flex 
+    justify-center
+    items-center
+    text-gray-500;
 }
 nav a:hover {
   @apply text-black;
