@@ -60,6 +60,19 @@ button:hover {
 .btn-secondary {
   @apply bg-gray-200 text-gray-900;
 }
+.btn-popover {
+  @apply inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400
+}
+.btn-popover:hover {
+  @apply bg-gray-100 text-gray-500
+}
+.btn-popover:focus {
+  @apply outline-none ring-2 ring-inset ring-primary
+}
+.btn-popover_menu:focus {
+  @apply outline-none ring-2 ring-inset ring-primary
+}
+
 
 /* form styles */
 form {
