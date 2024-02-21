@@ -11,17 +11,14 @@ import LogoutButton from "./LogoutButton";
 
 export default function Navbar({ user }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [popoverState, setPopoverState] = useState("")
 
   const handleOpenPopover = () => {
-    setIsOpen(true)
-    setPopoverState("open")
-  }
+    setIsOpen(true);
+  };
 
   const handleClosePopover = () => {
-    setIsOpen(false)
-    setPopoverState("")
-  }
+    setIsOpen(false);
+  };
 
   return (
     <Popover>
@@ -45,10 +42,7 @@ export default function Navbar({ user }) {
         </div>
 
         <div className="flex grow items-center justify-end sm:hidden">
-          <Popover.Button
-            className="btn-popover"
-            onClick={handleOpenPopover}
-          >
+          <Popover.Button className="btn-popover" onClick={handleOpenPopover}>
             <span className="sr-only">Open menu</span>
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </Popover.Button>
@@ -72,7 +66,10 @@ export default function Navbar({ user }) {
                   <div className="flex items-center justify-between pb-4 border-b-2 border-gray-200">
                     <h1>TICKET.ME</h1>
                     <div className="-mr-2">
-                      <Popover.Button className="btn-popover" onClick={handleClosePopover}>
+                      <Popover.Button
+                        className="btn-popover"
+                
+                      >
                         <span className="sr-only">Close menu</span>
                         <XMarkIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>
@@ -80,9 +77,13 @@ export default function Navbar({ user }) {
                   </div>
                   <div className="mt-6">
                     <div className="flex flex-col items-start gap-y-8">
-                      <Link href="/" onClick={handleClosePopover}>Dashboard</Link>
-                      <Link href="/tickets" onClick={handleClosePopover}>Tickets</Link>
-                      <LogoutButton onClick={handleClosePopover}/>
+                      <Link href="/" onClick={handleClosePopover}>
+                        Dashboard
+                      </Link>
+                      <Link href="/tickets" onClick={handleClosePopover}>
+                        Tickets
+                      </Link>
+                      <LogoutButton onClick={handleClosePopover} />
                     </div>
                   </div>
                 </div>
